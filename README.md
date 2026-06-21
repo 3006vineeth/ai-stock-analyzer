@@ -44,6 +44,135 @@ ai-stock-analyzer/
 
 ## Quick Start
 
+**🚀 Getting Started**
+
+1. Clone the Repository
+git clone https://github.com/3006vineeth/ai-stock-analyzer.git
+cd ai-stock-analyzer
+
+2. Get a Free Twelve Data API Key
+Visit https://twelvedata.com
+Create a free account.
+Copy your API key from the dashboard.
+
+**3. Configure Environment Variables**
+Copy the example environment file.
+cp .env.example .env
+
+On Windows PowerShell:
+
+Copy-Item .env.example .env
+
+Open .env and replace:
+
+TWELVEDATA_API_KEY=YOUR_TWELVEDATA_API_KEY
+
+with
+
+TWELVEDATA_API_KEY=your_actual_api_key
+4. Install Backend Dependencies
+cd backend
+pip install -r requirements.txt
+5. Start the Backend
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+Backend API will be available at
+
+http://localhost:8000
+
+Swagger Documentation
+
+http://localhost:8000/docs
+
+6. Start the Frontend
+
+**Open another terminal.**
+
+cd frontend
+npm install
+npm run dev
+
+Frontend will run at
+
+http://localhost:3000
+📡 Available API Endpoints
+Search Stocks
+GET /api/stocks/search?q=TCS
+Company Snapshot
+GET /api/stocks/TCS.NS/snapshot
+AI Stock Analysis
+POST /api/analysis/TCS.NS
+AI Chat
+POST /api/chat
+
+**🏗 Project Architecture**
+Layer	Previous Implementation	Current Implementation
+Market Data	yfinance	Twelve Data REST API
+Data Service	DataFetcher	TwelveDataService
+HTTP Client	requests	httpx.AsyncClient
+Backend	FastAPI	FastAPI
+Frontend	Next.js	Next.js + TypeScript
+Technical Analysis	Pandas	Pandas
+Caching	Basic Dictionary	TTL Cache
+Error Handling	Basic Exceptions	Structured Logging + HTTPException
+Historical Data	yfinance	Twelve Data → yfinance-compatible DataFrame
+
+**📊 Features**
+🔍 Indian Stock Search
+📈 Real-time Company Snapshot
+📉 Technical Analysis
+🕯 Candlestick Pattern Detection
+📊 Chart Pattern Recognition
+📈 Trend & Momentum Analysis
+💰 Fundamental Analysis
+📰 AI-Based News Sentiment
+⚠ Risk Assessment
+🎯 Trading Plan Generation
+🤖 AI Confidence Score
+💬 Interactive AI Chat Assistant
+⚙ Tech Stack
+
+**Frontend**
+Next.js
+TypeScript
+Tailwind CSS
+React
+Backend
+FastAPI
+Pandas
+NumPy
+HTTPX
+Twelve Data API
+
+📁 Project Structure
+ai-stock-analyzer/
+│
+├── backend/
+│   ├── app/
+│   │   ├── routers/
+│   │   ├── services/
+│   │   ├── models/
+│   │   └── main.py
+│   ├── requirements.txt
+│   └── start.bat
+│
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── ...
+│
+├── design/
+├── .env.example
+├── .gitignore
+└── README.md
+
+📝 Notes
+Uses Twelve Data REST API as the market data provider.
+Historical market data is converted into a yfinance-compatible DataFrame, allowing the existing technical analysis modules to work without modification.
+Includes TTL-based caching to reduce unnecessary API requests and improve responsiveness.
+Built specifically for Indian stock market analysis with support for NSE-listed equities.
+
+
 ### Backend
 
 ```bash
